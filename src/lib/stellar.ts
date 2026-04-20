@@ -59,7 +59,7 @@ export async function processPayout(
       networkPassphrase: Networks.TESTNET,
     })
       .addOperation(operation)
-      .addMemo(Memo.text(memo))
+      .addMemo(Memo.text(memo.substring(0, 28)))
       .setTimeout(60)
       .build();
 
@@ -136,7 +136,7 @@ export async function buildPaymentXDR(
           amount: amount,
         })
       )
-      .addMemo(Memo.text(memo))
+      .addMemo(Memo.text(memo.substring(0, 28)))
       .setTimeout(30)
       .build();
 
