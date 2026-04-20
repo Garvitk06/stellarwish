@@ -5,9 +5,10 @@ import React, { useState, useEffect } from 'react';
 
 interface Props {
   deadline: Date | string;
+  className?: string;
 }
 
-export default function CountdownTimer({ deadline }: Props) {
+export default function CountdownTimer({ deadline, className }: Props) {
   const [timeLeft, setTimeLeft] = useState<string>('');
 
   useEffect(() => {
@@ -42,8 +43,8 @@ export default function CountdownTimer({ deadline }: Props) {
   }, [deadline]);
 
   return (
-    <div className={`text-sm flex items-center gap-1 font-mono ${timeLeft === 'Expired' ? 'text-red-500' : 'text-gray-400'}`}>
-      <span className="text-[10px] uppercase">Ends:</span>
+    <div className={`flex items-center gap-2 font-mono ${className || 'text-sm text-gray-400'} ${timeLeft === 'Expired' ? 'text-red-500' : ''}`}>
+      <span className="text-[10px] uppercase opacity-50 font-black tracking-widest">Ending In</span>
       <span className="font-bold">{timeLeft}</span>
     </div>
   );
