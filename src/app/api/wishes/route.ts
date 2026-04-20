@@ -91,8 +91,9 @@ export async function POST(request: Request) {
     console.error('API [POST] Error Details:', error);
     return NextResponse.json(
       { 
-        error: error.message || 'Failed to create wish',
-        details: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        error: 'Internal Server Error',
+        message: error.message || 'Unknown error occurred',
+        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
       }, 
       { status: 500 }
     );
