@@ -12,7 +12,7 @@ StellarWish is a decentralized crowdfunding platform built on the **Stellar Test
 [https://stellar-wish.vercel.app]((https://stellar-wish.vercel.app/))
 
 ## 🎥 Demo Video
-[Watch the 1-minute demo video](./video/demo.mov)
+[Watch the 1-minute demo video](./video/demo.mp4)
 
 ## 📸 Screenshots
 
