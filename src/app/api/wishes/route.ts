@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Wish from '@/models/Wish';
 import cache from '@/lib/cache';
-import { nanoid } from 'nanoid';
+import crypto from 'crypto';
 
 export async function GET(request: Request) {
   try {
@@ -46,7 +46,7 @@ export async function GET(request: Request) {
   } catch (error: any) {
     console.error('API [GET] Error:', error);
     return NextResponse.json(
-      { error: error.message || 'Internal Server Error', data: [] }, 
+      { error: error.message || 'Internal Server Error' }, 
       { status: 500 }
     );
   }
@@ -55,15 +55,26 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     await dbConnect().catch(err => {
-      throw new Error('Database connection failed. Check MONGODB_URI.');
+      console.error('Database connection error:', err);
+      throw new Error('Database connection failed. Check your MONGODB_URI environment variable.');
     });
 
     const body = await request.json();
-    if (!body.title || !body.targetAmount) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    
+    // Comprehensive validation to prevent 500 errors on missing required fields
+    const requiredFields = ['title', 'description', 'creatorAddress', 'targetAmount', 'deadline'];
+    for (const field of requiredFields) {
+      if (!body[field]) {
+        return NextResponse.json(
+          { error: `Missing required field: ${field}` }, 
+          { status: 400 }
+        );
+      }
     }
     
-    const stellarMemo = nanoid(8);
+    // Robust ID generation using native crypto to avoid ESM/CJS compatibility issues
+    const stellarMemo = crypto.randomBytes(4).toString('hex').toUpperCase();
+
     const newWish = await Wish.create({
       ...body,
       stellarMemo,
@@ -77,9 +88,12 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newWish, { status: 201 });
   } catch (error: any) {
-    console.error('API [POST] Error:', error);
+    console.error('API [POST] Error Details:', error);
     return NextResponse.json(
-      { error: error.message || 'Failed to create wish' }, 
+      { 
+        error: error.message || 'Failed to create wish',
+        details: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      }, 
       { status: 500 }
     );
   }
