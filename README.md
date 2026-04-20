@@ -9,7 +9,7 @@
 StellarWish is a decentralized crowdfunding platform built on the **Stellar Testnet** using **Soroban Smart Contracts**. It allows users to create "Wishes" (crowdfunding campaigns) and receive contributions in XLM through secure on-chain logic.
 
 ## 🌐 Live Demo
-[https://stellar-wish.vercel.app]((https://stellar-wish.vercel.app/))
+[https://stellar-wish.vercel.app]((https://stellarwish-zeta.vercel.app/))
 
 ## 🎥 Demo Video
 [Watch the 1-minute demo video](./video/demo.mp4)
