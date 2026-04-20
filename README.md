@@ -25,10 +25,6 @@ StellarWish is a decentralized crowdfunding platform built on the **Stellar Test
 ### User Dashboard
 ![Dashboard](./screenshots/dashboard.png)
 
-## 📸 Test Output
-✅ **4 Soroban Contract Tests Passing**
-![Test Results](./screenshots/tests.png)
-
 ## ✨ Features
 - **Soroban Smart Contract**: Core logic (pledge, withdraw, refund) moved to a Rust-based smart contract for maximum security.
 - **Wallet Integration**: Seamless connection with the Freighter wallet.
