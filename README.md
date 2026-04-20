@@ -14,16 +14,11 @@ StellarWish is a decentralized crowdfunding platform built on the **Stellar Test
 ## 🎥 Demo Video
 [Watch the 1-minute demo video](./video/demo.mp4)
 
-## 📸 Screenshots
+## 🌌 Visual Experience
 
-### Home Page
-![Home Page](./screenshots/home.png)
-
-### Create a Wish
-![Create Wish](./screenshots/create.png)
-
-### User Dashboard
-![Dashboard](./screenshots/dashboard.png)
+| **Mission Control (Home)** | **Ignition Suite (Create)** | **Command Center (Dashboard)** |
+|:---:|:---:|:---:|
+| ![Home](./screenshots/home.png) | ![Create](./screenshots/create.png) | ![Dashboard](./screenshots/dashboard.png) |
 
 ## ✨ Features
 - **Soroban Smart Contract**: Core logic (pledge, withdraw, refund) moved to a Rust-based smart contract for maximum security.
